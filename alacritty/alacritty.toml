@@ -4,6 +4,7 @@ padding = { x = 8, y = 8 }
 dynamic_padding = true
 opacity = 0.95
 decorations = "none"
+dimensions = { columns = 100, lines = 30 }
 
 [font]
 normal = { family = "JetBrainsMono Nerd Font", style = "Regular" }
@@ -39,9 +40,8 @@ magenta = "#d7afd7"
 cyan    = "#87d7d7"
 white   = "#ffffff"
 
-[terminal.shell]
-program = "wsl.exe"
-args = ["-d", "Arch"]
+[terminal]
+shell = { program = "wsl", args = ["-d", "archlinux", "--cd", "~"] }
 
 [keyboard]
 bindings = [
