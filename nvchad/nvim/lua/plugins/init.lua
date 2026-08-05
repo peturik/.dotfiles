@@ -209,8 +209,14 @@ return {
       require("todo-comments").setup()
     end,
   }, -- To make a plugin not be loaded
+  -- {
+  --   "Exafunction/codeium.vim",
+  --   lazy = false,
+  -- },
   {
-    "Exafunction/codeium.vim",
-    lazy = false,
+    "supermaven-inc/supermaven-nvim",
+    config = function()
+      require("supermaven-nvim").setup {}
+    end,
   },
 }
