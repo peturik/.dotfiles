@@ -219,4 +219,12 @@ return {
       require("supermaven-nvim").setup {}
     end,
   },
+  {
+    "nvim-tree/nvim-tree.lua",
+    opts = {
+      filters = {
+        dotfiles = true,
+      },
+    },
+  },
 }
