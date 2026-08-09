@@ -1,17 +1,10 @@
 return {
   {
     "stevearc/conform.nvim",
-    event = "BufWritePre", -- uncomment for format on save
+    event = "BufWritePre",
     opts = require "configs.conform",
   },
 
-  -- These are some examples, uncomment them if you want to see them work!
-  {
-    "neovim/nvim-lspconfig",
-    config = function()
-      require "configs.lspconfig"
-    end,
-  },
   {
     "christoomey/vim-tmux-navigator",
     lazy = false,
@@ -28,6 +21,8 @@ return {
     lazy = false,
     opts = {},
   },
+
+  -- СЕКЦІЯ LSP: ОДИН правильний запис замість трьох
   {
     "neovim/nvim-lspconfig",
     config = function()
@@ -35,6 +30,7 @@ return {
       require "configs.lspconfig"
     end,
   },
+
   { "nvim-neotest/nvim-nio" },
   {
     "williamboman/mason.nvim",
@@ -75,12 +71,6 @@ return {
     end,
   },
   {
-    "neovim/nvim-lspconfig",
-    config = function()
-      require "configs.lspconfig"
-    end,
-  },
-  {
     "windwp/nvim-ts-autotag",
     event = "VeryLazy",
     config = function()
@@ -94,18 +84,6 @@ return {
       require("better_escape").setup()
     end,
   },
-  -- {
-  --   "jackMort/ChatGPT.nvim",
-  --   event = "VeryLazy",
-  --   config = function()
-  --     require("chatgpt").setup {}
-  --   end,
-  --   dependencies = {
-  --     "MunifTanjim/nui.nvim",
-  --     "nvim-lua/plenary.nvim",
-  --     "nvim-telescope/telescope.nvim",
-  --   },
-  -- },
   {
     "nvim-neotest/neotest",
     event = "VeryLazy",
@@ -188,9 +166,13 @@ return {
     end,
   },
   { "tpope/vim-fugitive" },
-  { "rbong/vim-flog", dependencies = {
-    "tpope/vim-fugitive",
-  }, lazy = false },
+  {
+    "rbong/vim-flog",
+    dependencies = {
+      "tpope/vim-fugitive",
+    },
+    lazy = false,
+  },
   { "sindrets/diffview.nvim", lazy = false },
   {
     "kevinhwang91/nvim-bqf",
@@ -208,11 +190,7 @@ return {
     config = function()
       require("todo-comments").setup()
     end,
-  }, -- To make a plugin not be loaded
-  -- {
-  --   "Exafunction/codeium.vim",
-  --   lazy = false,
-  -- },
+  },
   {
     "supermaven-inc/supermaven-nvim",
     config = function()
