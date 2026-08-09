@@ -1,6 +1,6 @@
 local nvlsp = require "nvchad.configs.lspconfig"
 
-local servers = { "html", "cssls", "ts_ls" }
+local servers = { "html", "cssls", "ts_ls", "taiwindcss" }
 
 -- Налаштовуємо кожен сервер окремо через новий нативний API vim.lsp.config
 for _, lsp in ipairs(servers) do

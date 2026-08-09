@@ -216,4 +216,9 @@ return {
       vim.g.matchup_matchparen_enabled = 0
     end,
   },
+  {
+    "https://github.com/FelipeLema/cmp-async-path",
+    name = "cmp-async-path",
+    event = "InsertEnter",
+  },
 }
