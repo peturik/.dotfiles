@@ -45,7 +45,26 @@ return {
         "gopls",
         "js-debug-adapter",
         "typescript-language-server",
+        "tailwindcss-language-server",
       },
+    },
+  },
+  {
+    "williamboman/mason-lspconfig.nvim",
+    opts = {
+      ensure_installed = {
+        "lua-language-server",
+        "stylua",
+        "html-lsp",
+        "css-lsp",
+        "prettier",
+        "eslint-lsp",
+        "gopls",
+        "js-debug-adapter",
+        "typescript-language-server",
+        "tailwindcss-language-server",
+      },
+      automatic_installation = true,
     },
   },
   {
