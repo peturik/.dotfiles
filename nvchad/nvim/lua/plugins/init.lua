@@ -46,6 +46,7 @@ return {
         "js-debug-adapter",
         "typescript-language-server",
         "tailwindcss-language-server",
+        "mdx-analyzer",
       },
     },
   },
@@ -63,14 +64,16 @@ return {
         "js-debug-adapter",
         "typescript-language-server",
         "tailwindcss-language-server",
+        "mdx-analyzer",
       },
       automatic_installation = true,
     },
   },
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = {
-      ensure_installed = {
+    opts = function(_, opts)
+      opts.ensure_installed = opts.ensure_installed or {}
+      vim.list_extend(opts.ensure_installed, {
         "vim",
         "lua",
         "vimdoc",
@@ -79,12 +82,17 @@ return {
         "typescript",
         "javascript",
         "go",
-        "tsx", -- рекомендовано додати, якщо працюєте з React / JSX
-      },
-      matchup = {
-        enable = true, -- вмикає точну навігацію через Treesitter
-      },
-    },
+        "tsx",
+        "markdown",
+        "markdown_inline",
+      })
+
+      opts.matchup = { enable = true }
+    end,
+    init = function()
+      -- Прив'язуємо парсер markdown до файлів mdx під час ініціалізації
+      vim.treesitter.language.register("markdown", "mdx")
+    end,
   },
   {
     "mfussenegger/nvim-lint",

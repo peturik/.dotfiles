@@ -13,6 +13,12 @@ vim.opt.rtp:prepend(lazypath)
 
 local lazy_config = require "configs.lazy"
 
+vim.filetype.add {
+  extension = {
+    mdx = "mdx",
+  },
+}
+
 -- load plugins
 require("lazy").setup({
   {
