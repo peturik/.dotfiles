@@ -1,7 +1,7 @@
 local nvlsp = require "nvchad.configs.lspconfig"
 
 -- Список серверів (додано mdx_analyzer)
-local servers = { "html", "cssls", "ts_ls", "tailwindcss", "lua_ls", "mdx_analyzer" }
+local servers = { "html", "cssls", "ts_ls", "tailwindcss", "lua_ls", "mdx_analyzer", "astro" }
 
 -- Налаштування для Tailwind CSS v4.3
 local function get_tailwind_config()

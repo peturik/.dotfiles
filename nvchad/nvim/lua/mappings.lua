@@ -21,3 +21,18 @@ end, { desc = "Next diagnostic" })
 map("n", "[d", function()
   vim.diagnostic.jump { count = -1, float = true }
 end, { desc = "Previous diagnostic" })
+
+-- 1. Головне меню: відкриває інтерактивне вікно з усіма діями (Prompts, Commands, Servers)
+map("n", "<leader>ai", function()
+  require("opencode").select()
+end, { desc = "AI: Відкрити меню OpenCode" })
+
+-- 2. Довільний запит (Ask): відкриває поле вводу промпту (підтримує автодоповнення контексту)
+map("n", "<leader>aa", function()
+  require("opencode").ask()
+end, { desc = "AI: Задати питання OpenCode" })
+
+-- 3. Надіслати виділений код (Visual mode): автоматично передає контекст виділення через оператор @this
+map("v", "<leader>ac", function()
+  require("opencode").prompt()
+end, { desc = "AI: Обробити виділений код" })

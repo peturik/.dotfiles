@@ -47,6 +47,7 @@ return {
         "typescript-language-server",
         "tailwindcss-language-server",
         "mdx-analyzer",
+        "astro-language-server",
       },
     },
   },
@@ -65,15 +66,15 @@ return {
         "typescript-language-server",
         "tailwindcss-language-server",
         "mdx-analyzer",
+        "astro-language-server",
       },
       automatic_installation = true,
     },
   },
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts)
-      opts.ensure_installed = opts.ensure_installed or {}
-      vim.list_extend(opts.ensure_installed, {
+    opts = {
+      ensure_installed = {
         "vim",
         "lua",
         "vimdoc",
@@ -82,17 +83,15 @@ return {
         "typescript",
         "javascript",
         "go",
-        "tsx",
+        "tsx", -- рекомендовано додати, якщо працюєте з React / JSX
         "markdown",
-        "markdown_inline",
-      })
-
-      opts.matchup = { enable = true }
-    end,
-    init = function()
-      -- Прив'язуємо парсер markdown до файлів mdx під час ініціалізації
-      vim.treesitter.language.register("markdown", "mdx")
-    end,
+        "markdown_inline", -- Обов'язково для синтаксису MDX
+        "astro",
+      },
+      matchup = {
+        enable = true, -- вмикає точну навігацію через Treesitter
+      },
+    },
   },
   {
     "mfussenegger/nvim-lint",
@@ -240,12 +239,21 @@ return {
     "andymass/vim-matchup",
     event = "BufReadPost",
     init = function()
-      vim.g.matchup_matchparen_enabled = 0
+      -- vim.g.matchup_matchparen_enabled = 1
+      vim.g.loaded_matchparen = 1
     end,
   },
   {
     "https://github.com/FelipeLema/cmp-async-path",
     name = "cmp-async-path",
     event = "InsertEnter",
+  },
+  {
+    "nickjvandyke/opencode.nvim",
+    event = "VeryLazy",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "muniftanjim/nui.nvim",
+    },
   },
 }

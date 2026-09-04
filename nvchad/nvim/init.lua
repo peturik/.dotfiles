@@ -10,14 +10,14 @@ if not vim.uv.fs_stat(lazypath) then
 end
 
 vim.opt.rtp:prepend(lazypath)
-
-local lazy_config = require "configs.lazy"
+vim.opt.wrap = true
+vim.opt.linebreak = true
 
 vim.filetype.add {
-  extension = {
-    mdx = "mdx",
-  },
+  extension = { mdx = "mdx" },
 }
+
+local lazy_config = require "configs.lazy"
 
 -- load plugins
 require("lazy").setup({

@@ -1,28 +1,30 @@
 return {
   {
     "toppair/peek.nvim",
-    build = "deno task --quiet build:fast", -- Команда для збірки плагіна
+    event = { "VeryLazy" },
+    build = "deno task --quiet build:fast",
+    config = function()
+      require("peek").setup {
+        theme = "dark",
+        app = "webview",
+        update_on_change = true,
+        filetype = { "markdown" },
+      }
+      vim.api.nvim_create_user_command("PeekOpen", require("peek").open, {})
+      vim.api.nvim_create_user_command("PeekClose", require("peek").close, {})
+    end,
     keys = {
-      {
-        "<leader>op", -- Гаряча клавіша Space + o + p (за замовчуванням)
-        function()
-          require("peek").open()
-        end,
-        desc = "Peek (Markdown Preview)",
-      },
-      {
-        "<leader>oc", -- Додаткова клавіша для закриття
-        function()
-          require("peek").close()
-        end,
-        desc = "Close Peek Preview",
-      },
+      { "<leader>po", "<cmd>lua require('peek').open()<cr>", desc = "Peek open" },
+      { "<leader>pc", "<cmd>lua require('peek').close()<cr>", desc = "Peek close" },
     },
-    opts = {
-      theme = "dark",
-      app = "webview",
-      auto_load = true,
-      update_on_change = true,
-    },
+    init = function()
+      -- Додаємо підтримку mdx файлів
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "mdx",
+        callback = function()
+          vim.bo.filetype = "markdown"
+        end,
+      })
+    end,
   },
 }
